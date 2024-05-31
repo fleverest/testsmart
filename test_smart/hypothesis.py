@@ -10,55 +10,56 @@ import numpy as np
 
 
 class Decision(Enum):
-  """
-  Outcomes for a statistical hypothesis test.
-  See "Sequential Tests of Statistical Hypotheses" by A. Wald.
-  """
-  ACCEPT = "Accept the null hypothesis"
-  REJECT = "Reject the null hypothesis"
-  CONTINUE = "Continue testing"
+    """
+    Outcomes for a statistical hypothesis test.
+    See "Sequential Tests of Statistical Hypotheses" by A. Wald.
+    """
 
-  def __str__(self):
-      return self.value
+    ACCEPT = "Accept the null hypothesis"
+    REJECT = "Reject the null hypothesis"
+    CONTINUE = "Continue testing"
+
+    def __str__(self):
+        return self.value
 
 
 class HypothesisTest(ABC):
-  """
-  A base class for implementing hypothesis tests.
-  """
-
-  alpha: np.floating
-  decision: Decision
-
-  def __init__(self, alpha: np.floating) -> None:
-    self.alpha = alpha
-    self.decision = Decision.CONTINUE
-
-  @abstractmethod
-  def test(self, x: np.ndarray) -> Decision:
     """
-    The `test` method takes as input some data and outputs a test decision.
+    A base class for implementing hypothesis tests.
     """
-    pass
 
-  @abstractmethod
-  def summary(self) -> dict:
-    """
-    The `summary` method takes no input and should return some summary data,
-    e.g. descriptions, test decisions, p-values or statistics related to the
-    hypothesis being tested.
-    """
-    pass
+    alpha: np.floating
+    decision: Decision
+
+    def __init__(self, alpha: np.floating) -> None:
+        self.alpha = alpha
+        self.decision = Decision.CONTINUE
+
+    @abstractmethod
+    def test(self, x: np.ndarray) -> Decision:
+        """
+        The `test` method takes as input some data and outputs a test decision.
+        """
+        pass
+
+    @abstractmethod
+    def summary(self) -> dict:
+        """
+        The `summary` method takes no input and should return some summary data,
+        e.g. descriptions, test decisions, p-values or statistics related to the
+        hypothesis being tested.
+        """
+        pass
 
 
 class SeqHypothesisTest(HypothesisTest):
-  """
-  A base class for implementing sequential hypothesis tests.
-  """
+    """
+    A base class for implementing sequential hypothesis tests.
+    """
 
-  # The current set of observations
-  observations: np.ndarray
+    # The current set of observations
+    observations: np.ndarray
 
-  def __init__(self, alpha: np.floating) -> None:
-    super().__init__(alpha)
-    self.observations = np.array([])
+    def __init__(self, alpha: np.floating) -> None:
+        super().__init__(alpha)
+        self.observations = np.array([])

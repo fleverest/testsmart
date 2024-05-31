@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = []
+
+[project]
+name = "test_smart"
+version = "0.0.1"
+authors = [
+  {name = "Floyd Everest", email = "me@floydeverest.com"}
+]
+maintainers = [
+  {name = "Floyd Everest", email = "me@floydeverest.com"},
+]
+description = "Sequential Hypothesis Testing with (super)Martingales in Python"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["hypothesis testing", "sequential analysis", "nonparametric tests"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: GNU Affero General Public License v3",
+  "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "numpy"
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+    "coverage",
+    "flake8",
+    "black"
+]
+
+[project.scripts]
+raire = "shangrla.raire.run_raire:main"
+shangrla-irv-bp = "shangrla.core.run_shangrla_irv_bp_experiment:main"
