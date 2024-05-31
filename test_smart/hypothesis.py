@@ -1,6 +1,6 @@
 """
-This file defined the HypothesisTest and SeqHypothesisTest abstract classes,
-from which a variety of tests can be built.
+This file defines a generic structure for hypothesis tests, from which a variety
+of testing procedures can be built.
 """
 
 from abc import ABC, abstractmethod
@@ -39,6 +39,15 @@ class HypothesisTest(ABC):
   def test(self, x: np.ndarray) -> Decision:
     """
     The `test` method takes as input some data and outputs a test decision.
+    """
+    pass
+
+  @abstractmethod
+  def summary(self) -> dict:
+    """
+    The `summary` method takes no input and should return some summary data,
+    e.g. descriptions, test decisions, p-values or statistics related to the
+    hypothesis being tested.
     """
     pass
 
