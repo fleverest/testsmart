@@ -1,5 +1,5 @@
-# Working title: Test Sequentially with Martingales!
+# TEST Super MARTingales: `test_smart`
 
 #### Working decription:
-The `test_smart` python package contains multiple utilities for testing certain
-hypotheses in a sequential manner.
+The `test_smart` python package may one day contain multiple utilities for
+conducting certain sequential hypothesis tests using test (super)martingales.
