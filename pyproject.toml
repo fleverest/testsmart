@@ -37,9 +37,6 @@ test = [
     "pytest-cov",
     "coverage",
     "flake8",
-    "black"
+    "black",
+    "flake8-black"
 ]
-
-[project.scripts]
-raire = "shangrla.raire.run_raire:main"
-shangrla-irv-bp = "shangrla.core.run_shangrla_irv_bp_experiment:main"
