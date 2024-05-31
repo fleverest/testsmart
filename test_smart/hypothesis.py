@@ -8,7 +8,7 @@ from enum import Enum
 
 import numpy as np
 
-__DEFAULT_P_THRESHOLD = np.float64(0.05)
+_DEFAULT_P_THRESHOLD = np.float64(0.05)
 
 class Decision(Enum):
   """
@@ -31,7 +31,7 @@ class HypothesisTest(ABC):
   alpha: np.floating
   decision: Decision
 
-  def __init__(self, alpha: np.floating = __DEFAULT_P_THRESHOLD) -> None:
+  def __init__(self, alpha: np.floating = _DEFAULT_P_THRESHOLD) -> None:
     self.alpha = alpha
     self.decision = Decision.CONTINUE
 
@@ -62,7 +62,7 @@ class SeqHypothesisTest(HypothesisTest):
   # The current set of observations
   observations: np.ndarray
 
-  def __init__(self, alpha: np.floating = __DEFAULT_P_THRESHOLD) -> None:
+  def __init__(self, alpha: np.floating = _DEFAULT_P_THRESHOLD) -> None:
     super().__init__(alpha)
     self.observations = np.array([])
     self.p_history = np.array([])
