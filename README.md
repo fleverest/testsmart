@@ -18,18 +18,24 @@ We can construct the corresponding SPRT as follows:
 
 ```python
 import numpy as np
-from test_smart.sprt import ExponentialSPRT
-sprt = ExponentialSPRT(alpha = 0.05, beta = 0.05, theta0 = 1, theta1 = 2)
+from test_smart.sprt import SPRT, Distribution
+exp_sprt = SPRT(
+  alpha = 0.05,
+  beta = 0.05,
+  theta0 = 1,
+  theta1 = 2,
+  dist = Distribution.EXPONENTIAL
+)
 ```
 
 Then, given some observation(s) from the population we can update our test as
 follows:
 
 ```python
-sprt.test(1.5)
+exp_sprt.test(1.5)
 # <Decision.CONTINUE: 'Continue testing'>
-sprt.test(np.array([2.00, 3.26, 2.46, 2.12, 4.88]))
+exp_sprt.test(np.array([2.00, 3.26, 2.46, 2.12, 4.88]))
 # <Decision.REJECT: 'Reject the null hypothesis'>
-sprt.summary()
+exp_sprt.summary()
 # {'decision': 'Reject the null hypothesis', 'N': 6}
 ```
