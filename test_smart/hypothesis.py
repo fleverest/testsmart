@@ -1,0 +1,59 @@
+"""
+This file defined the HypothesisTest and SeqHypothesisTest abstract classes,
+from which a variety of tests can be built.
+"""
+
+from abc import ABC, abstractmethod
+from enum import Enum
+
+import numpy as np
+
+__DEFAULT_P_THRESHOLD = np.float64(0.05)
+
+class Decision(Enum):
+  """
+  Outcomes for a statistical hypothesis test.
+  See "Sequential Tests of Statistical Hypotheses" by A. Wald.
+  """
+  ACCEPT = "Accept the null hypothesis"
+  REJECT = "Reject the null hypothesis"
+  CONTINUE = "Continue testing"
+
+  def __str__(self):
+      return self.value
+
+
+class HypothesisTest(ABC):
+  """
+  A base class for implementing hypothesis tests.
+  """
+
+  alpha: np.floating
+  decision: Decision
+
+  def __init__(self, alpha: np.floating = __DEFAULT_P_THRESHOLD) -> None:
+    self.alpha = alpha
+    self.decision = Decision.CONTINUE
+
+  @abstractmethod
+  def test(self, x: np.ndarray) -> Decision:
+    """
+    The `test` method takes as input some data and outputs a test decision.
+    """
+    pass
+
+
+class SeqHypothesisTest(HypothesisTest):
+  """
+  A base class for implementing sequential hypothesis tests.
+  """
+
+  # A history of computed p-values
+  p_history: np.ndarray
+  # The current set of observations
+  observations: np.ndarray
+
+  def __init__(self, alpha: np.floating = __DEFAULT_P_THRESHOLD) -> None:
+    super().__init__(alpha)
+    self.observations = np.array([])
+    self.p_history = np.array([])
