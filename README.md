@@ -18,13 +18,13 @@ We can construct the corresponding SPRT as follows:
 
 ```python
 import numpy as np
-from test_smart.sprt import SPRT, Distribution
+from test_smart.sprt import SPRT, exponential_llr
 exp_sprt = SPRT(
   alpha = 0.05,
   beta = 0.05,
   theta0 = 1,
   theta1 = 2,
-  dist = Distribution.EXPONENTIAL
+  llr = exponential_llr()
 )
 ```
 
@@ -37,5 +37,8 @@ exp_sprt.test(1.5)
 exp_sprt.test(np.array([2.00, 3.26, 2.46, 2.12, 4.88]))
 # <Decision.REJECT: 'Reject the null hypothesis'>
 exp_sprt.summary()
-# {'decision': 'Reject the null hypothesis', 'N': 6}
-```
+# {'null': 'theta = 1',
+#  'alternative': 'theta = 2',
+#  'decision': 'Reject the null hypothesis',
+#  'N': 6}
+ ```
