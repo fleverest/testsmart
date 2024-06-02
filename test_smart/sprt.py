@@ -59,7 +59,7 @@ class NormalLogLikelihood(LogLikelihood):
         # fmt: on
 
     def __repr__(self):
-        return f"<Normal(theta, {self.sigma})) log-Likelihood>"
+        return f"<Normal(theta, {self.sigma}) log-Likelihood>"
 
 
 class SPRT(SeqHypothesisTest):

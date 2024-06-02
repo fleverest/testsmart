@@ -56,7 +56,7 @@ norm_sprt.test(np.array([2.00, 3.26, 2.46, 2.12, 4.88]))
 norm_sprt.summary()
 # {'null': 'theta = 1',
 #  'alternative': 'theta = 2',
-#  'loglikelihood': <Normal(theta, 1)) log-Likelihood>,
+#  'loglikelihood': <Normal(theta, 1) log-Likelihood>,
 #  'decision': 'Reject the null hypothesis',
 #  'N': 6}
  ```
