@@ -115,6 +115,6 @@ class SPRT(SeqHypothesisTest):
             "null": f"theta = {self.theta0}",
             "alternative": f"theta = {self.theta1}",
             "loglikelihood": self.loglikelihood,
-            "decision": self.decision.value,
+            "decision": self.decision,
             "N": len(self.observations),
         }
