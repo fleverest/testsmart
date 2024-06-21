@@ -92,8 +92,8 @@ class SPRT(SeqHypothesisTest):
         self.S = np.array([0])
         self.loglikelihood = loglikelihood
 
-    def test(self, x: np.ndarray) -> Decision:
-        self.observations = np.append(self.observations, x)
+    def observe(self, x: np.ndarray) -> Decision:
+        super().observe(x)
         self.S = np.append(
             self.S,
             np.cumsum(
@@ -116,5 +116,5 @@ class SPRT(SeqHypothesisTest):
             "alternative": f"theta = {self.theta1}",
             "loglikelihood": self.loglikelihood,
             "decision": self.decision,
-            "N": len(self.observations),
+            "n": len(self.observations),
         }

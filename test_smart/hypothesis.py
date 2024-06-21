@@ -11,7 +11,7 @@ import numpy as np
 
 class Decision(Enum):
     """
-    Outcomes for a statistical hypothesis test.
+    Decisions for statistical hypothesis tests.
     See "Sequential Tests of Statistical Hypotheses" by A. Wald.
     """
 
@@ -36,9 +36,17 @@ class HypothesisTest(ABC):
         self.decision = Decision.CONTINUE
 
     @abstractmethod
-    def test(self, x: np.ndarray) -> Decision:
+    def observe(self, x: np.ndarray) -> Decision:
         """
-        The `test` method takes as input some data and outputs a test decision.
+        The `observe` method takes as input some data, updates the internal state of
+        the test and returns the testing decision.
+        """
+        pass
+
+    @abstractmethod
+    def pval(self) -> np.floating:
+        """
+        The `pval` method returns the p-value for the statistical test.
         """
         pass
 
@@ -60,6 +68,22 @@ class SeqHypothesisTest(HypothesisTest):
     # The current set of observations
     observations: np.ndarray
 
-    def __init__(self, alpha: np.floating) -> None:
+    def __init__(self, alpha: np.floating, n_total: np.integer) -> None:
         super().__init__(alpha)
         self.observations = np.array([])
+        self.n_total = n_total
+
+    def observe(self, x: np.ndarray) -> Decision:
+        self.observations = np.append(self.observations, x)
+        pass
+    
+    def stopped(self) -> bool:
+        return self.decision != Decision.CONTINUE
+
+
+class TooManySamplesError(Exception):
+    """
+    An error raised when the number of samples observed exceeds the prespecified
+    population size.
+    """
+    pass
