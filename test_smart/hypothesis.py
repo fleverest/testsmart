@@ -44,13 +44,6 @@ class HypothesisTest(ABC):
         """
         pass
 
-    @abstractmethod
-    def pval(self) -> float | None:
-        """
-        The `pval` method returns the p-value for the statistical test.
-        """
-        return self._pval
-
     def summary(self) -> dict:
         """
         The `summary` method takes no input and should return some summary data,
