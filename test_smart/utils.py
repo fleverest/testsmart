@@ -214,7 +214,7 @@ class FPRunningSummaries(RunningSummaries):
         if x.size > self.oos_count:
             raise TooManySamplesError(len(x), self.count, self.pop_size)
         super().add(x)
-        new_oos_sums = [self._oos_sums[0] - s for s in self._sums[-len(x):]]
+        new_oos_sums = [self._oos_sums[0] - s for s in self._sums[-len(x) :]]
         self._oos_sums.extend(new_oos_sums)
         with np.errstate(divide="ignore", invalid="ignore"):
             self._oos_means.extend(
