@@ -18,6 +18,6 @@ class TestRunningSummaries:
     def test_historical_means_are_partial_means(self):
         rs = RunningSummaries()
         rs.add(self.x)
-        assert np.isclose(
-            rs.hist_means, (np.cumsum(self.x) / np.arange(1, len(self.x) + 1))[:-1]
-        ).all()
+        assert np.allclose(
+            rs.hist_means, (np.cumsum(self.x) / np.arange(1, len(self.x) + 1))
+        )
