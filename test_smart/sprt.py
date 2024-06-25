@@ -89,18 +89,17 @@ class SPRT(SeqHypothesisTest):
         self.theta1 = theta1
         self.a = np.log(beta / (1 - alpha))
         self.b = np.log((1 - alpha) / beta)
-        self.S = np.array([0])
+        self.S = [0]
         self.loglikelihood = loglikelihood
 
     def observe(self, x: np.ndarray) -> Decision:
         super().observe(x)
-        self.S = np.append(
-            self.S,
+        self.S.extend(
             np.cumsum(
                 self.loglikelihood.ll(x, self.theta0)
                 - self.loglikelihood.ll(x, self.theta1)
             )
-            + self.S[-1],
+            + self.S[-1]
         )
         if self.S[-1] <= self.a:
             self.decision = Decision.ACCEPT
