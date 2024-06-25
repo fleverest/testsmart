@@ -28,36 +28,36 @@ class HypothesisTest(ABC):
     A base class for implementing hypothesis tests.
     """
 
-    alpha: np.floating
+    alpha: float
     decision: Decision
 
-    def __init__(self, alpha: np.floating) -> None:
+    def __init__(self, alpha: float) -> None:
         self.alpha = alpha
         self.decision = Decision.CONTINUE
+        self._pval = None
 
     @abstractmethod
-    def observe(self, x: np.ndarray) -> Decision:
+    def update(self, x: np.ndarray) -> Decision:
         """
-        The `observe` method takes as input some data, updates the internal state of
+        The `update` method takes as input some data, updates the internal state of
         the test and returns the testing decision.
         """
         pass
 
     @abstractmethod
-    def pval(self) -> np.floating:
+    def pval(self) -> float | None:
         """
         The `pval` method returns the p-value for the statistical test.
         """
-        pass
+        return self._pval
 
-    @abstractmethod
     def summary(self) -> dict:
         """
         The `summary` method takes no input and should return some summary data,
         e.g. descriptions, test decisions, p-values or statistics related to the
         hypothesis being tested.
         """
-        pass
+        return {"alpha": self.alpha, "p": self.pval, "decision": self.decision}
 
 
 class SeqHypothesisTest(HypothesisTest):
@@ -65,17 +65,25 @@ class SeqHypothesisTest(HypothesisTest):
     A base class for implementing sequential hypothesis tests.
     """
 
-    # The current set of observations
-    observations: np.ndarray
-
-    def __init__(self, alpha: np.floating, n_total: np.integer) -> None:
+    def __init__(self, alpha: float, n_total: int) -> None:
         super().__init__(alpha)
-        self.observations = np.array([])
+        self._observations = []
         self.n_total = n_total
+        self.finite = np.isfinite(n_total)
 
-    def observe(self, x: np.ndarray) -> Decision:
-        self.observations = np.append(self.observations, x)
+    @property
+    def observations(self) -> np.ndarray:
+        return np.array(self.observations)
+
+    def update(self, x: np.ndarray) -> Decision:
+        self._observations.extend(x)
         pass
 
     def stopped(self) -> bool:
         return self.decision != Decision.CONTINUE
+
+    def summary(self) -> dict:
+        return dict(
+            super().summary(),
+            **{"n_observations": len(self._observations), "n_total": self.n_total},
+        )
