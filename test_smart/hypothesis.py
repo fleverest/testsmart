@@ -76,14 +76,6 @@ class SeqHypothesisTest(HypothesisTest):
     def observe(self, x: np.ndarray) -> Decision:
         self.observations = np.append(self.observations, x)
         pass
-    
+
     def stopped(self) -> bool:
         return self.decision != Decision.CONTINUE
-
-
-class TooManySamplesError(Exception):
-    """
-    An error raised when the number of samples observed exceeds the prespecified
-    population size.
-    """
-    pass
