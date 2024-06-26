@@ -35,15 +35,15 @@ Then, given some observation(s) from the population we can update our test as
 follows:
 
 ```python
-exp_sprt.observe(0.5)
+exp_sprt.update(0.5)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.5)
+exp_sprt.update(1.5)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.7)
+exp_sprt.update(1.7)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.9)
+exp_sprt.update(1.9)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.0)
+exp_sprt.update(1.0)
 # <Decision.REJECT: 'Reject the null hypothesis'>
 exp_sprt.summary()
 # {'null': 'theta = 1',
@@ -74,7 +74,7 @@ norm_sprt = SPRT(
   theta1 = 2,
   loglikelihood = NormalLogLikelihood(sigma = 1)
 )
-norm_sprt.observe(np.array([1.5, 0.0, 2.4, -1.0])) # Add a batch of observations
+norm_sprt.update(np.array([1.5, 0.0, 2.4, -1.0])) # Add a batch of observations
 # <Decision.ACCEPT: 'Accept the null hypothesis'>
 norm_sprt.summary()
 # {'null': 'theta = 1',

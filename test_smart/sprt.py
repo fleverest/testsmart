@@ -83,7 +83,7 @@ class SPRT(SeqHypothesisTest):
         loglikelihood: LogLikelihood,
         **kwargs,
     ):
-        super().__init__(alpha)
+        super().__init__(alpha, n_total=np.inf)
         self.beta = beta
         self.theta0 = theta0
         self.theta1 = theta1
@@ -92,8 +92,8 @@ class SPRT(SeqHypothesisTest):
         self.S = [0]
         self.loglikelihood = loglikelihood
 
-    def observe(self, x: np.ndarray) -> Decision:
-        super().observe(x)
+    def update(self, x: np.ndarray) -> Decision:
+        super().update(x)
         self.S.extend(
             np.cumsum(
                 self.loglikelihood.ll(x, self.theta0)
