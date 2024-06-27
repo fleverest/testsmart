@@ -1,6 +1,6 @@
 import numpy as np
 
-from test_smart.utils import RunningSummaries
+from test_smart.utils import RunningSummaries, FPRunningSummaries
 
 
 class TestRunningSummaries:
@@ -21,3 +21,13 @@ class TestRunningSummaries:
         assert np.allclose(
             rs.hist_means, (np.cumsum(self.x) / np.arange(1, len(self.x) + 1))
         )
+
+    def test_final_oos_mean_is_full_mean(self):
+        rs = FPRunningSummaries(pop_size=len(self.x), pop_mean=np.mean(self.x))
+        rs.add(self.x[:-1])
+        assert np.isclose(self.x[-1], rs.oos_mean)
+
+    def test_final_oos_count_is_zero(self):
+        rs = FPRunningSummaries(pop_size=len(self.x), pop_mean=np.mean(self.x))
+        rs.add(self.x)
+        assert rs.oos_count == 0
