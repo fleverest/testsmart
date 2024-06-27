@@ -47,3 +47,8 @@ examples = [
     "seaborn",
     "polars"
 ]
+docs = [
+    "sphinx",
+    "pydata-sphinx-theme",
+    "myst-parser"
+]

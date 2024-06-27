@@ -1,19 +1,31 @@
-# TEST Super MARTingales: `test_smart`
+# TestSmart: Sequential tests for all
 
-#### Working decription:
-The `test_smart` python package may one day contain multiple utilities for
-conducting certain sequential hypothesis tests using test (super)martingales.
-
-
-## Example: Wald's Sequential Probability Ratio Test
+A new, completely open [sequential typothesis testing](https://en.wikipedia.org/wiki/Sequential_analysis)
+library for python.
 
 
-#### SPRT: Exponential scale parameter
+## Installation
+
+Install directly from GitHub using ``pip``:
+```sh
+pip install git@github.com/fleverest/test_smart.git@main
+```
+
+Alternatively, using ``conda``:
+```sh
+conda install git@github.com/fleverest/test_smart.git@main
+```
+
+
+## Getting Started: Wald's Sequential Probability Ratio Test
+
+
+### SPRT: Exponential scale parameter
 
 Consider the simple-versus-simple hypothesis test for the scale parameter $\theta$ of
 an exponential distribution:
 
-```math
+```{math}
 H_0: \theta = 1 \text{ versus }H_1: \theta = 2.
 ```
 
@@ -53,12 +65,12 @@ exp_sprt.summary()
 #  'N': 5}
 ```
 
-#### SPRT: Normal location parameter
+### SPRT: Normal location parameter
 
 Consider the simple-versus-simple hypothesis test for the locationg parameter $\theta$
 of a normal distribution:
 
-```math
+```{math}
 H_0: \theta = 1 \text{ versus }H_1: \theta = 2.
 ```
 
