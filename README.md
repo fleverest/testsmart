@@ -25,9 +25,9 @@ conda install git@github.com/fleverest/test_smart.git@main
 Consider the simple-versus-simple hypothesis test for the scale parameter $\theta$ of
 an exponential distribution:
 
-```{math}
+$$
 H_0: \theta = 1 \text{ versus }H_1: \theta = 2.
-```
+$$
 
 We can construct the corresponding SPRT as follows:
 
@@ -70,9 +70,9 @@ exp_sprt.summary()
 Consider the simple-versus-simple hypothesis test for the locationg parameter $\theta$
 of a normal distribution:
 
-```{math}
+$$
 H_0: \theta = 1 \text{ versus }H_1: \theta = 2.
-```
+$$
 
 We can conduct the corresponding SPRT as follows:
 
