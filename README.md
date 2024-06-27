@@ -1,19 +1,31 @@
-# TEST Super MARTingales: `test_smart`
+# TestSmart: Sequential tests for all
 
-#### Working decription:
-The `test_smart` python package may one day contain multiple utilities for
-conducting certain sequential hypothesis tests using test (super)martingales.
-
-
-## Example: Wald's Sequential Probability Ratio Test
+A new, completely open [sequential typothesis testing](https://en.wikipedia.org/wiki/Sequential_analysis)
+library for python.
 
 
-#### SPRT: Exponential scale parameter
+## Installation
+
+Install directly from GitHub using ``pip``:
+```sh
+pip install git@github.com/fleverest/test_smart.git@main
+```
+
+Alternatively, using ``conda``:
+```sh
+conda install git@github.com/fleverest/test_smart.git@main
+```
+
+
+## Getting Started: Wald's Sequential Probability Ratio Test
+
+
+### SPRT: Exponential scale parameter
 
 Consider the simple-versus-simple hypothesis test for the scale parameter $\theta$ of
 an exponential distribution:
 
-```math
+```{math}
 H_0: \theta = 1 \text{ versus }H_1: \theta = 2.
 ```
 
@@ -35,15 +47,15 @@ Then, given some observation(s) from the population we can update our test as
 follows:
 
 ```python
-exp_sprt.observe(0.5)
+exp_sprt.update(0.5)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.5)
+exp_sprt.update(1.5)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.7)
+exp_sprt.update(1.7)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.9)
+exp_sprt.update(1.9)
 # <Decision.CONTINUE: 'Continue testing'>
-exp_sprt.observe(1.0)
+exp_sprt.update(1.0)
 # <Decision.REJECT: 'Reject the null hypothesis'>
 exp_sprt.summary()
 # {'null': 'theta = 1',
@@ -53,12 +65,12 @@ exp_sprt.summary()
 #  'N': 5}
 ```
 
-#### SPRT: Normal location parameter
+### SPRT: Normal location parameter
 
 Consider the simple-versus-simple hypothesis test for the locationg parameter $\theta$
 of a normal distribution:
 
-```math
+```{math}
 H_0: \theta = 1 \text{ versus }H_1: \theta = 2.
 ```
 
@@ -74,7 +86,7 @@ norm_sprt = SPRT(
   theta1 = 2,
   loglikelihood = NormalLogLikelihood(sigma = 1)
 )
-norm_sprt.observe(np.array([1.5, 0.0, 2.4, -1.0])) # Add a batch of observations
+norm_sprt.update(np.array([1.5, 0.0, 2.4, -1.0])) # Add a batch of observations
 # <Decision.ACCEPT: 'Accept the null hypothesis'>
 norm_sprt.summary()
 # {'null': 'theta = 1',

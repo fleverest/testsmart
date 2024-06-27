@@ -6,7 +6,10 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-exclude = []
+exclude = [
+  "tests",
+  "examples"
+]
 
 [project]
 name = "test_smart"
@@ -39,4 +42,13 @@ test = [
     "flake8",
     "black",
     "flake8-black"
+]
+examples = [
+    "seaborn",
+    "polars"
+]
+docs = [
+    "sphinx",
+    "pydata-sphinx-theme",
+    "myst-parser"
 ]
