@@ -5,7 +5,7 @@ from test_smart.utils import RunningSummaries, FPRunningSummaries
 
 class TestRunningSummaries:
     """
-    Tests for the various summaries for updated
+    Tests for RunningSummaries and FPRunningSummaries.
     """
 
     x = np.array([1.5, 2.5, 1.7, 1.0, 1.2, 2.1, 1.4, 1.8])
