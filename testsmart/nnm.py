@@ -176,7 +176,7 @@ class NonNegMeanTest(SeqHypothesisTest):
     def __init__(
         self,
         alpha: float = 0.05,
-        n_total: float = np.Inf,
+        n_total: float = np.inf,
         u: float = 1,
         t: float = 1 / 2,
     ):
@@ -197,7 +197,7 @@ class AlphaMart(NonNegMeanTest):
     def __init__(
         self,
         alpha: float = 0.05,
-        n_total: float = np.Inf,
+        n_total: float = np.inf,
         u: float = 1,
         t: float = 1 / 2,
         estim: Estimator | Bet | None = None,
