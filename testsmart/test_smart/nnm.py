@@ -2,8 +2,8 @@ import numpy as np
 
 from abc import ABC, abstractmethod
 
-from test_smart.hypothesis import SeqHypothesisTest, Decision
-from test_smart.utils import RunningSummaries, FPRunningSummaries
+from testsmart.hypothesis import SeqHypothesisTest, Decision
+from testsmart.utils import RunningSummaries, FPRunningSummaries
 
 
 def bet_to_estimate(lam: float, mu: float, u: float = 1):

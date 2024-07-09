@@ -8,12 +8,12 @@ library for python.
 
 Install directly from GitHub using ``pip``:
 ```sh
-pip install git@github.com/fleverest/test_smart.git@main
+pip install git@github.com/fleverest/testsmart.git@main
 ```
 
 Alternatively, using ``conda``:
 ```sh
-conda install git@github.com/fleverest/test_smart.git@main
+conda install git@github.com/fleverest/testsmart.git@main
 ```
 
 
@@ -33,7 +33,7 @@ We can construct the corresponding SPRT as follows:
 
 ```python
 import numpy as np
-from test_smart.sprt import SPRT, ExponentialLogLikelihood
+from testsmart.sprt import SPRT, ExponentialLogLikelihood
 exp_sprt = SPRT(
   alpha = 0.05,
   beta = 0.05,
@@ -78,7 +78,7 @@ We can conduct the corresponding SPRT as follows:
 
 ```python
 import numpy as np
-from test_smart.sprt import SPRT, NormalLogLikelihood
+from testsmart.sprt import SPRT, NormalLogLikelihood
 norm_sprt = SPRT(
   alpha = 0.05,
   beta = 0.05,

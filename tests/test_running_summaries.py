@@ -1,6 +1,6 @@
 import numpy as np
 
-from test_smart.utils import RunningSummaries, FPRunningSummaries
+from testsmart.utils import RunningSummaries, FPRunningSummaries
 
 
 class TestRunningSummaries:

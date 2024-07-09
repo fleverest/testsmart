@@ -4,7 +4,7 @@ import polars as pl
 
 import matplotlib.pyplot as plt
 
-from test_smart.nnm import AlphaMart, FixedBet, AGRAPA, ShrinkTrunc
+from testsmart.nnm import AlphaMart, FixedBet, AGRAPA, ShrinkTrunc
 
 np.random.seed(12345)
 

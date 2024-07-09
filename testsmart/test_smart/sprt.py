@@ -5,7 +5,7 @@ This file implements Wald's Sequential Probability Ratio Test using the
 
 from abc import ABC, abstractmethod
 
-from test_smart.hypothesis import SeqHypothesisTest, Decision
+from testsmart.hypothesis import SeqHypothesisTest, Decision
 
 import numpy as np
 

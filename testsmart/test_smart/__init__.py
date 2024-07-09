@@ -1,3 +1,3 @@
 """
-The test_smart package
+The testsmart package
 """
