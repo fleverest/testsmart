@@ -8,12 +8,12 @@ library for python.
 
 Install directly from GitHub using ``pip``:
 ```sh
-pip install git@github.com/fleverest/testsmart.git@main
+pip install git+https://github.com/fleverest/testsmart.git@main
 ```
 
 Alternatively, using ``conda``:
 ```sh
-conda install git@github.com/fleverest/testsmart.git@main
+conda install git+https://github.com/fleverest/testsmart.git@main
 ```
 
 
