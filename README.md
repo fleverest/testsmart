@@ -1,6 +1,6 @@
 # TestSmart: Sequential tests for all
 
-A new, completely open [sequential typothesis testing](https://en.wikipedia.org/wiki/Sequential_analysis)
+A new, completely open [sequential hypothesis testing](https://en.wikipedia.org/wiki/Sequential_analysis)
 library for python.
 
 
