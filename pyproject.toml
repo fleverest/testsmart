@@ -50,5 +50,6 @@ examples = [
 docs = [
     "sphinx",
     "pydata-sphinx-theme",
-    "myst-parser"
+    "myst-parser",
+    "enum-tools[sphinx]"
 ]

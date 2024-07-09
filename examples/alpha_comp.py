@@ -37,7 +37,7 @@ eta_estim = []
 
 for name, test in tests.items():
     for xi in x:
-        if test.stopped():
+        if test.stopped:
             break
         _ = test.update(np.array([xi]))
         count.append(test.summaries.count)
@@ -88,7 +88,7 @@ for _ in range(1000):
     np.random.shuffle(x)
     for name, test in tests.items():
         for xi in x:
-            if test.stopped():
+            if test.stopped:
                 break
             _ = test.update(np.array([xi]))
         test_name.append(name)
