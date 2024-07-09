@@ -20,7 +20,7 @@ author = "Floyd Everest"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", "myst_parser"]
+extensions = ["sphinx.ext.autodoc", "myst_parser", "enum_tools.autoenum"]
 
 source_suffix = {
     ".rst": "restructuredtext",
