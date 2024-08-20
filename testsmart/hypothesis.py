@@ -37,13 +37,13 @@ class HypothesisTest(ABC):
         self._pval = None
 
     @abstractmethod
-    def update(self, x: np.ndarray) -> Decision:
+    def update(self, x: list[float]) -> Decision:
         """
         The `update` method takes as input some data, updates the internal state
         of the test and returns the testing decision.
 
         :param x: The observed data.
-        :type x: np.ndarray
+        :type x: list[float]
         :return: The resulting decision; for a standard hypothesis test this is
                  either to accept or reject the null hypothesis
         :rtype: Decision
@@ -66,7 +66,7 @@ class SeqHypothesisTest(HypothesisTest):
     A base class for implementing sequential hypothesis tests.
     """
 
-    def __init__(self, alpha: float, n_total: int | np.floating) -> None:
+    def __init__(self, alpha: float, n_total: int) -> None:
         """
         Instantiate a new SeqHypothesisTest
 
@@ -82,8 +82,8 @@ class SeqHypothesisTest(HypothesisTest):
         self.finite = np.isfinite(n_total)
 
     @property
-    def observations(self) -> np.ndarray:
-        return np.array(self.observations)
+    def observations(self) -> list[float]:
+        return self.observations
 
     @property
     def stopped(self) -> bool:
@@ -96,7 +96,7 @@ class SeqHypothesisTest(HypothesisTest):
         """
         return self.decision != Decision.CONTINUE
 
-    def update(self, x: np.ndarray) -> Decision:
+    def update(self, x: list[float]) -> Decision:
         self._observations.extend(x)
         pass
 

@@ -86,7 +86,7 @@ norm_sprt = SPRT(
   theta1 = 2,
   loglikelihood = NormalLogLikelihood(sigma = 1)
 )
-norm_sprt.update(np.array([1.5, 0.0, 2.4, -1.0])) # Add a batch of observations
+norm_sprt.update([1.5, 0.0, 2.4, -1.0]) # Add a batch of observations
 # <Decision.ACCEPT: 'Accept the null hypothesis'>
 norm_sprt.summary()
 # {'null': 'theta = 1',

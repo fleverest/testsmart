@@ -125,7 +125,7 @@ class FixedBet(Bet):
         # We don't need super().__init__(...) here, bet just returns a constant.
         self.lam = lam
 
-    def bet(self) -> np.ndarray:
+    def bet(self) -> float:
         return self.lam
 
 
@@ -151,7 +151,7 @@ class AGRAPA(Bet):
         self.c_max = c_max
         self.c_grow = c_grow
 
-    def bet(self) -> np.ndarray:
+    def bet(self) -> float:
         # mean before the last data pont
         prev_mean = self.summaries.prev_mean
         # var before the last data point
@@ -221,14 +221,12 @@ class AlphaMart(NonNegMeanTest):
     def pval(self) -> float:
         return self.p_history[-1] if self.p_history else np.nan
 
-    def update(self, x: np.ndarray) -> None:
+    def update(self, x: list[float]) -> None:
         super().update(x)
-        x = np.array(x, ndmin=1)
-        # If multiple values are passed, just loop through them and calculate p-values
-        # one at a time.
+        # Loop through them and calculate p-values one at a time.
         for xi in x:
             # Update summaries
-            self.summaries.add(xi)
+            self.summaries.add([xi])
             # Compute out-of-sample mean
             m = self.summaries.oos_mean if self.finite else self.t
             # Estimate eta

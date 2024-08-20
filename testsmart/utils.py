@@ -33,11 +33,11 @@ class RunningSummaries:
         self._vars = []
 
     @property
-    def hist_sums(self) -> np.ndarray:
+    def hist_sums(self) -> list[float]:
         """
         The historical sums of the data stream, up to the current time point.
         """
-        return np.array(self._sums)
+        return self._sums
 
     @property
     def prev_sum(self) -> float:
@@ -54,11 +54,11 @@ class RunningSummaries:
         return self._sums[-1] if self._sums else 0
 
     @property
-    def hist_means(self) -> np.ndarray:
+    def hist_means(self) -> list[float]:
         """
         The historical running mean of the data stream, up to the current time.
         """
-        return np.array(self._means)
+        return self._means
 
     @property
     def prev_mean(self) -> float:
@@ -75,12 +75,12 @@ class RunningSummaries:
         return self._means[-1] if self._means else np.nan
 
     @property
-    def hist_vars(self) -> np.ndarray:
+    def hist_vars(self) -> list[float]:
         """
         The historical running (population) variance of the data stream, up to the
         current time.
         """
-        return np.array(self._vars)
+        return self._vars
 
     @property
     def prev_var(self) -> float:
@@ -103,9 +103,7 @@ class RunningSummaries:
         """
         return self._count
 
-    def add(self, x: np.ndarray) -> None:
-        if not isinstance(x, np.ndarray):
-            x = np.array(x, ndmin=1)
+    def add(self, x: list[float]) -> None:
         if self.count == 0:
             # Starting values
             self._data.append(x[0])
@@ -169,7 +167,7 @@ class FPRunningSummaries(RunningSummaries):
         """
         The historical out-of-sample means of the data stream, up to the current time.
         """
-        return np.array(self._oos_means)
+        return self._oos_means
 
     @property
     def prev_oos_mean(self):
@@ -191,7 +189,7 @@ class FPRunningSummaries(RunningSummaries):
         """
         The historical out-of-sample sums of the data stream, up to the current time.
         """
-        return np.array(self._oos_sums)
+        return self._oos_sums
 
     @property
     def prev_oos_sum(self):
@@ -208,10 +206,8 @@ class FPRunningSummaries(RunningSummaries):
         """
         return self._oos_sums[-1]
 
-    def add(self, x: np.ndarray) -> None:
-        if not isinstance(x, np.ndarray):
-            x = np.array(x, ndmin=1)
-        if x.size > self.oos_count:
+    def add(self, x: list[float]) -> None:
+        if len(x) > self.oos_count:
             raise TooManySamplesError(len(x), self.count, self.pop_size)
         super().add(x)
         new_oos_sums = [self._oos_sums[0] - s for s in self._sums[-len(x) :]]
