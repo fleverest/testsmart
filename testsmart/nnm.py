@@ -47,7 +47,7 @@ class ShrinkTrunc(Estimator):
         t: float = 1 / 2,
         n_total: int = np.inf,
         eta0: float | None = None,
-        c: float | None = 1 / 2,
+        c: float | None = None,
         d: int | None = 100,
         f: float | None = 0,
         minsd: float | None = 1e-6,
@@ -58,7 +58,7 @@ class ShrinkTrunc(Estimator):
         else:
             self.summaries = RunningSummaries()
         self.eta0 = eta0 if eta0 else u * (1 - np.finfo(float).eps)
-        self.c = c
+        self.c = c if c else (self.eta0 - self.t) / 2
         self.d = d
         self.f = f
         self.minsd = minsd
